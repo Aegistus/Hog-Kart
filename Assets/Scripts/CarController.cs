@@ -38,7 +38,7 @@ public class CarController : MonoBehaviour
         horizontalInput = horizontalInput >= -minSteerAngle && horizontalInput <= minSteerAngle ? 0f : horizontalInput;
         print(horizontalInput);
         verticalInput = Input.GetAxis("Vertical");
-        isBraking = Input.GetKey(KeyCode.Space);
+        isBraking = Input.GetMouseButton(1);
     }
 
     void HandleMotor()
