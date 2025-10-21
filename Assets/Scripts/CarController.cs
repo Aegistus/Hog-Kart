@@ -23,6 +23,25 @@ public class CarController : MonoBehaviour
     float currentBrakeForce;
     bool isBraking;
 
+    Rigidbody rb;
+    float Speed
+    {
+        get
+        {
+            var speed = transform.InverseTransformDirection(rb.velocity).z;
+            if (speed < .5 && speed > -.5)
+            {
+                speed = 0;
+            }
+            return speed;
+        }
+    }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Update()
     {
         GetInput();
@@ -30,9 +49,8 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheelVisuals();
         HandleBrakeLights();
+        print(Speed);
     }
-
-
 
     void GetInput()
     {
@@ -40,7 +58,6 @@ public class CarController : MonoBehaviour
         horizontalInput = Vector3.SignedAngle(forwardVector, cameraHolder.forward, Vector3.up);
         horizontalInput = Mathf.Clamp(horizontalInput, -maxSteerAngle, maxSteerAngle);
         horizontalInput = horizontalInput >= -minSteerAngle && horizontalInput <= minSteerAngle ? 0f : horizontalInput;
-        print(horizontalInput);
         verticalInput = Input.GetAxis("Vertical");
         isBraking = Input.GetMouseButton(1);
     }
@@ -69,6 +86,10 @@ public class CarController : MonoBehaviour
     void HandleSteering()
     {
         currentSteerAngle = horizontalInput;
+        if (Speed < 0)
+        {
+            currentSteerAngle = -currentSteerAngle;
+        }
         // front wheels
         wheelColliders[0].steerAngle = currentSteerAngle;
         wheelColliders[1].steerAngle = currentSteerAngle;
