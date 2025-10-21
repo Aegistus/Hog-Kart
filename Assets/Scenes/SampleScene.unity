@@ -1125,86 +1125,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 164662767309771225, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.299
-      objectReference: {fileID: 0}
-    - target: {fileID: 191429481859787135, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 191429481859787135, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 191429481859787135, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270260048381158781, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270260048381158781, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.112
-      objectReference: {fileID: 0}
-    - target: {fileID: 2973847472033868589, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.277
-      objectReference: {fileID: 0}
-    - target: {fileID: 2976788612753368735, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.314
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047250809128285614, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.004
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047250809128285614, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.127
-      objectReference: {fileID: 0}
-    - target: {fileID: 3523998012034296329, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3523998012034296329, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3572200984052088524, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3616045521312900453, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3616045521312900453, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3616045521312900453, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462756518413315506, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462756518413315506, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.019
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462756518413315506, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5896812547763714814, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.275
-      objectReference: {fileID: 0}
     - target: {fileID: 5969720106260085619, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1249,14 +1169,6 @@ PrefabInstance:
       propertyPath: cameraHolder
       value: 
       objectReference: {fileID: 1074440271}
-    - target: {fileID: 7262874483850091363, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.003
-      objectReference: {fileID: 0}
-    - target: {fileID: 7262874483850091363, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.054
-      objectReference: {fileID: 0}
     - target: {fileID: 7555290539661272622, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
       propertyPath: m_Name
       value: Car
