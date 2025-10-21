@@ -10,6 +10,7 @@ public class CarController : MonoBehaviour
     [SerializeField] float maxSteerAngle = 30f;
     [SerializeField] float minSteerAngle = 4f;
 
+    [SerializeField] Light[] brakelights;
     /// <summary>
     /// Wheel colliders in order of Front Left, Front Right, Back Left, Back Right.
     /// </summary>
@@ -28,7 +29,10 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheelVisuals();
+        HandleBrakeLights();
     }
+
+
 
     void GetInput()
     {
@@ -80,6 +84,24 @@ public class CarController : MonoBehaviour
         {
             wheelColliders[i].GetWorldPose(out Vector3 pos, out Quaternion rot);
             wheelTransforms[i].SetPositionAndRotation(pos, rot);
+        }
+    }
+
+    void HandleBrakeLights()
+    {
+        if (isBraking)
+        {
+            for (int i = 0; i < brakelights.Length; i++)
+            {
+                brakelights[i].enabled = true;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < brakelights.Length; i++)
+            {
+                brakelights[i].enabled = false;
+            }
         }
     }
 }
