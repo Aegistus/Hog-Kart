@@ -49,13 +49,16 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheelVisuals();
         HandleBrakeLights();
-        print(Speed);
     }
 
     void GetInput()
     {
         var forwardVector = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
-        horizontalInput = Vector3.SignedAngle(forwardVector, cameraHolder.forward, Vector3.up);
+        horizontalInput = Vector3.SignedAngle(forwardVector, cameraHolder.forward, transform.up);
+        if (horizontalInput > 180 - minSteerAngle || horizontalInput < -180 + minSteerAngle)
+        {
+            horizontalInput = 0;
+        }
         horizontalInput = Mathf.Clamp(horizontalInput, -maxSteerAngle, maxSteerAngle);
         horizontalInput = horizontalInput >= -minSteerAngle && horizontalInput <= minSteerAngle ? 0f : horizontalInput;
         verticalInput = Input.GetAxis("Vertical");
@@ -86,7 +89,7 @@ public class CarController : MonoBehaviour
     void HandleSteering()
     {
         currentSteerAngle = horizontalInput;
-        if (Speed < 0)
+        if (Speed < 0 || Vector3.Dot(Vector3.up, transform.up) < 0)
         {
             currentSteerAngle = -currentSteerAngle;
         }
