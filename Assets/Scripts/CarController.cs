@@ -7,6 +7,7 @@ public class CarController : MonoBehaviour
     [SerializeField] Transform cameraHolder;
     [SerializeField] float motorForce = 100f;
     [SerializeField] float brakeForce = 1000f;
+    [SerializeField] float speedLimit = 20f;
     [SerializeField] float maxSteerAngle = 30f;
     [SerializeField] float minSteerAngle = 4f;
 
@@ -68,6 +69,14 @@ public class CarController : MonoBehaviour
 
     void HandleMotor()
     {
+        if (Speed > speedLimit)
+        {
+            for (int i = 0; i < wheelColliders.Length; i++)
+            {
+                wheelColliders[i].motorTorque = 0f;
+            }
+            return;
+        }
         for (int i = 0; i < wheelColliders.Length; i++)
         {
             wheelColliders[i].motorTorque = verticalInput * motorForce;

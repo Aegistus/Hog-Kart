@@ -1410,6 +1410,7 @@ MonoBehaviour:
   cameraHolder: {fileID: 0}
   motorForce: 7500
   brakeForce: 5000
+  speedLimit: 30
   maxSteerAngle: 20
   minSteerAngle: 4
   brakelights:
