@@ -84,7 +84,7 @@ public class CarController : MonoBehaviour
         //wheelColliders[0].motorTorque = verticalInput * motorForce;
         //wheelColliders[1].motorTorque = verticalInput * motorForce;
 
-        currentBrakeForce = isBraking ? brakeForce : 0f;
+        currentBrakeForce = isBraking ? brakeForce : .1f;
         ApplyBraking();
     }
 
@@ -92,7 +92,7 @@ public class CarController : MonoBehaviour
     {
         for (int i = 0; i < wheelColliders.Length; i++)
         {
-            wheelColliders[i].brakeTorque = currentBrakeForce;
+            wheelColliders[i].wheelDampingRate = currentBrakeForce;
         }
     }
 
