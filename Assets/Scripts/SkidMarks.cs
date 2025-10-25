@@ -11,6 +11,7 @@ public class SkidMarks : MonoBehaviour
     private void Awake()
     {
         trail = GetComponent<TrailRenderer>();
+        trail.emitting = true;
     }
 
     private void Update()
