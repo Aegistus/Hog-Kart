@@ -11,13 +11,17 @@ public class CarController : MonoBehaviour
     [SerializeField] float maxSteerAngle = 30f;
     [SerializeField] float minSteerAngle = 4f;
 
-    [SerializeField] Light[] brakelights;
+    [SerializeField] GameObject[] brakeLights;
+    [SerializeField] Material brakeLightOnMat;
+    [SerializeField] Material brakeLightOffMat;
     /// <summary>
     /// Wheel colliders in order of Front Left, Front Right, Back Left, Back Right.
     /// </summary>
     public WheelCollider[] wheelColliders;
     public Transform[] wheelTransforms;
 
+    List<MeshRenderer> brakeLightMeshes = new();
+    List<Light> brakeLightLights = new();
     float horizontalInput;
     float verticalInput;
     float currentSteerAngle;
@@ -41,6 +45,11 @@ public class CarController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        for (int i = 0; i < brakeLights.Length; i++)
+        {
+            brakeLightMeshes.Add(brakeLights[i].GetComponent<MeshRenderer>());
+            brakeLightLights.Add(brakeLights[i].GetComponentInChildren<Light>());
+        }
     }
 
     private void Update()
@@ -137,16 +146,18 @@ public class CarController : MonoBehaviour
     {
         if (isBraking || isPowersliding)
         {
-            for (int i = 0; i < brakelights.Length; i++)
+            for (int i = 0; i < brakeLights.Length; i++)
             {
-                brakelights[i].enabled = true;
+                brakeLightLights[i].enabled = true;
+                brakeLightMeshes[i].material = brakeLightOnMat;
             }
         }
         else
         {
-            for (int i = 0; i < brakelights.Length; i++)
+            for (int i = 0; i < brakeLights.Length; i++)
             {
-                brakelights[i].enabled = false;
+                brakeLightLights[i].enabled = false;
+                brakeLightMeshes[i].material = brakeLightOffMat;
             }
         }
     }

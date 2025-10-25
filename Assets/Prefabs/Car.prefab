@@ -1409,13 +1409,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraHolder: {fileID: 0}
   motorForce: 7500
-  brakeForce: 1000
+  powerslideForce: 1000
   speedLimit: 25
   maxSteerAngle: 20
   minSteerAngle: 4
-  brakelights:
-  - {fileID: 2899884141558703567}
-  - {fileID: 2961213446462039493}
+  brakeLights:
+  - {fileID: 2883890229498755398}
+  - {fileID: 6732512527902541101}
+  brakeLightOnMat: {fileID: 2100000, guid: 56ce03f12a6673543b517272a9d89b92, type: 2}
+  brakeLightOffMat: {fileID: 2100000, guid: ce253ef876080a346bad9f98fa4af6b3, type: 2}
   wheelColliders:
   - {fileID: 7069641541859983986}
   - {fileID: 7191052617724119070}
