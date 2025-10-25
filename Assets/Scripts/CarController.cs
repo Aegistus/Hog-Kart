@@ -50,7 +50,7 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheelVisuals();
         HandleBrakeLights();
-        print(Speed);
+        //print(Speed);
     }
 
     void GetInput()
