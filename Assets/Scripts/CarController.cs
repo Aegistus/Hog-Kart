@@ -6,7 +6,7 @@ public class CarController : MonoBehaviour
 {
     [SerializeField] Transform cameraHolder;
     [SerializeField] float motorForce = 100f;
-    [SerializeField] float brakeForce = 1000f;
+    [SerializeField] float powerslideForce = 1000f;
     [SerializeField] float speedLimit = 20f;
     [SerializeField] float maxSteerAngle = 30f;
     [SerializeField] float minSteerAngle = 4f;
@@ -21,7 +21,7 @@ public class CarController : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     float currentSteerAngle;
-    float currentBrakeForce;
+    bool isPowersliding;
     bool isBraking;
 
     Rigidbody rb;
@@ -64,7 +64,8 @@ public class CarController : MonoBehaviour
         horizontalInput = Mathf.Clamp(horizontalInput, -maxSteerAngle, maxSteerAngle);
         horizontalInput = horizontalInput >= -minSteerAngle && horizontalInput <= minSteerAngle ? 0f : horizontalInput;
         verticalInput = Input.GetAxis("Vertical");
-        isBraking = Input.GetMouseButton(1);
+        isPowersliding = Input.GetMouseButton(1);
+        isBraking = Input.GetKey(KeyCode.Space);
     }
 
     void HandleMotor()
@@ -84,15 +85,26 @@ public class CarController : MonoBehaviour
         //wheelColliders[0].motorTorque = verticalInput * motorForce;
         //wheelColliders[1].motorTorque = verticalInput * motorForce;
 
-        currentBrakeForce = isBraking ? brakeForce : .1f;
         ApplyBraking();
+        ApplyPowerslide();
     }
 
     void ApplyBraking()
     {
+        // any brake torque greater than 0 will full brake.
+        var brakeTorque = isBraking ? 1 : 0;
         for (int i = 0; i < wheelColliders.Length; i++)
         {
-            wheelColliders[i].wheelDampingRate = currentBrakeForce;
+            wheelColliders[i].brakeTorque = brakeTorque;
+        }
+    }
+
+    void ApplyPowerslide()
+    {
+        var currentPowerslideForce = isPowersliding ? powerslideForce : .1f;
+        for (int i = 0; i < wheelColliders.Length; i++)
+        {
+            wheelColliders[i].wheelDampingRate = currentPowerslideForce;
         }
     }
 
@@ -123,7 +135,7 @@ public class CarController : MonoBehaviour
 
     void HandleBrakeLights()
     {
-        if (isBraking)
+        if (isBraking || isPowersliding)
         {
             for (int i = 0; i < brakelights.Length; i++)
             {
