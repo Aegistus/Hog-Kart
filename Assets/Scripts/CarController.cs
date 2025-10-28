@@ -27,9 +27,9 @@ public class CarController : MonoBehaviour
     float currentSteerAngle;
     bool isPowersliding;
     bool isBraking;
-
     Rigidbody rb;
-    float Speed
+
+    public float Speed
     {
         get
         {
@@ -41,6 +41,10 @@ public class CarController : MonoBehaviour
             return speed;
         }
     }
+
+    public float SpeedLimit => speedLimit;
+
+    public float MotorForce => wheelColliders[0].motorTorque;
 
     private void Awake()
     {
