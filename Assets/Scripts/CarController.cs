@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CarController : MonoBehaviour
 {
+    public event Action OnReset;
+
     [SerializeField] Transform cameraHolder;
     [SerializeField] float motorForce = 100f;
     [SerializeField] float powerslideForce = 1000f;
@@ -63,7 +66,6 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheelVisuals();
         HandleBrakeLights();
-        //print(Speed);
     }
 
     void GetInput()
@@ -164,6 +166,12 @@ public class CarController : MonoBehaviour
                 brakeLightMeshes[i].material = brakeLightOffMat;
             }
         }
+    }
+
+    public void Reset()
+    {
+        rb.velocity = Vector3.zero;
+        OnReset.Invoke();
     }
 }
 

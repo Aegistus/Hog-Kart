@@ -13,6 +13,11 @@ public class SkidMarks : MonoBehaviour
 
     private void Awake()
     {
+        GetComponentInParent<CarController>().OnReset += () =>
+        {
+            trail.emitting = false;
+            trail.Clear();
+        };
         trail = GetComponent<TrailRenderer>();
         driftAudio = GetComponent<AudioSource>();
         trail.emitting = true;

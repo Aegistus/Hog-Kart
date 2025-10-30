@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Checkpoint : MonoBehaviour
 {
+    public event Action<Checkpoint> OnCheckpointReached;
+
     [SerializeField] GameObject checkpointVisuals;
 
     public bool CheckpointReached { get; private set; }
@@ -45,6 +48,7 @@ public class Checkpoint : MonoBehaviour
                 next.Activate();
                 print(next);
             }
+            OnCheckpointReached?.Invoke(this);
         }
     }
 }

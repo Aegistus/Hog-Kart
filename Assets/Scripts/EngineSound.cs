@@ -14,6 +14,11 @@ public class EngineSound : MonoBehaviour
     private void Awake()
     {
         car = GetComponent<CarController>();
+        car.OnReset += () =>
+        {
+            engineAudio.pitch = 1;
+            engineAudio.volume = 1;
+        };
     }
 
     private void Update()
