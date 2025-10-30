@@ -6,12 +6,15 @@ public class SkidMarks : MonoBehaviour
 {
     [SerializeField] WheelCollider wheel;
 
+    bool isDrifting = false;
     readonly float lateralSlipThreshold = .25f;
     TrailRenderer trail;
+    AudioSource driftAudio;
 
     private void Awake()
     {
         trail = GetComponent<TrailRenderer>();
+        driftAudio = GetComponent<AudioSource>();
         trail.emitting = true;
     }
 
@@ -20,11 +23,31 @@ public class SkidMarks : MonoBehaviour
         wheel.GetGroundHit(out WheelHit hit);
         if (hit.collider != null && Mathf.Abs(hit.sidewaysSlip) > lateralSlipThreshold)
         {
-            trail.emitting = true;
+            if (!isDrifting)
+            {
+                Drift(true);
+            }
         }
         else
         {
-            trail.emitting = false;
+            if (isDrifting)
+            {
+                Drift(false);
+            }
+        }
+    }
+
+    void Drift(bool starting)
+    {
+        isDrifting = starting;
+        trail.emitting = starting;
+        if (starting)
+        {
+            driftAudio.Play();
+        }
+        else
+        {
+            driftAudio.Stop();
         }
     }
 }

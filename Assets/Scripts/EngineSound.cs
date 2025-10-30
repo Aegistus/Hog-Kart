@@ -18,7 +18,15 @@ public class EngineSound : MonoBehaviour
 
     private void Update()
     {
-        engineAudio.pitch = Mathf.Lerp(engineAudio.pitch, 1 + ((car.Speed / car.SpeedLimit) * maxPitch), audioChangeSpeed * Time.deltaTime);
-        engineAudio.volume = Mathf.Lerp(engineAudio.volume, 1 + ((car.Speed / car.SpeedLimit) * maxVolume), audioChangeSpeed * Time.deltaTime);
+        if (Input.GetAxis("Vertical") != 0)
+        {
+            engineAudio.pitch = Mathf.Lerp(engineAudio.pitch, 1 + ((car.Speed / car.SpeedLimit) * maxPitch), audioChangeSpeed * Time.deltaTime);
+            engineAudio.volume = Mathf.Lerp(engineAudio.volume, 1 + ((car.Speed / car.SpeedLimit) * maxVolume), audioChangeSpeed * Time.deltaTime);
+        }
+        else
+        {
+            engineAudio.pitch = Mathf.Lerp(engineAudio.pitch, 1, audioChangeSpeed * Time.deltaTime);
+            engineAudio.volume = Mathf.Lerp(engineAudio.volume, 1, audioChangeSpeed * Time.deltaTime);
+        }
     }
 }
