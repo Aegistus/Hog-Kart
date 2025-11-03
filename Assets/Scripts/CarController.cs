@@ -19,6 +19,7 @@ public class CarController : MonoBehaviour
     [SerializeField] GameObject[] brakeLights;
     [SerializeField] Material brakeLightOnMat;
     [SerializeField] Material brakeLightOffMat;
+    [SerializeField] ParticleSystem[] boostExhaustParticles;
     /// <summary>
     /// Wheel colliders in order of Front Left, Front Right, Back Left, Back Right.
     /// </summary>
@@ -191,6 +192,10 @@ public class CarController : MonoBehaviour
         }
         rb.AddForce(transform.forward * boostForce);
         boostAudio.Play();
+        for (int i = 0; i < boostExhaustParticles.Length; i++)
+        {
+            boostExhaustParticles[i].Play();
+        }
         CurrentBoostCooldown = boostCooldown;
     }
 
