@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
     [SerializeField] float maxSteerAngle = 30f;
     [SerializeField] float minSteerAngle = 4f;
     [SerializeField] float boostForce = 1000f;
+    [SerializeField] float boostCooldown = 2f;
 
     [SerializeField] GameObject[] brakeLights;
     [SerializeField] Material brakeLightOnMat;
@@ -46,6 +47,9 @@ public class CarController : MonoBehaviour
         }
     }
 
+    public float BoostCooldown => boostCooldown;
+    public float CurrentBoostCooldown { get; private set; }
+
     public float SpeedLimit => speedLimit;
 
     public float MotorForce => wheelColliders[0].motorTorque;
@@ -67,6 +71,10 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheelVisuals();
         HandleBrakeLights();
+        if (CurrentBoostCooldown > 0)
+        {
+            CurrentBoostCooldown = Mathf.Clamp(CurrentBoostCooldown - Time.deltaTime, 0, BoostCooldown);
+        }
     }
 
     void GetInput()
@@ -175,8 +183,13 @@ public class CarController : MonoBehaviour
 
     public void Boost()
     {
-        print("Boosting");
+        if (CurrentBoostCooldown > 0)
+        {
+            print("On Cooldown");
+            return;
+        }
         rb.AddForce(transform.forward * boostForce);
+        CurrentBoostCooldown = boostCooldown;
     }
 
     public void Reset()
