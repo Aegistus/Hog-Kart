@@ -28084,6 +28084,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6924653245555492107, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
+      propertyPath: boostForce
+      value: 10000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924653245555492107, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
       propertyPath: cameraHolder
       value: 
       objectReference: {fileID: 1074440271}

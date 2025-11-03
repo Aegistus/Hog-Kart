@@ -13,6 +13,7 @@ public class CarController : MonoBehaviour
     [SerializeField] float speedLimit = 20f;
     [SerializeField] float maxSteerAngle = 30f;
     [SerializeField] float minSteerAngle = 4f;
+    [SerializeField] float boostForce = 1000f;
 
     [SerializeField] GameObject[] brakeLights;
     [SerializeField] Material brakeLightOnMat;
@@ -81,6 +82,10 @@ public class CarController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         isPowersliding = Input.GetMouseButton(1);
         isBraking = Input.GetKey(KeyCode.Space);
+        if (Input.GetMouseButtonDown(0))
+        {
+            Boost();
+        }
     }
 
     void HandleMotor()
@@ -166,6 +171,12 @@ public class CarController : MonoBehaviour
                 brakeLightMeshes[i].material = brakeLightOffMat;
             }
         }
+    }
+
+    public void Boost()
+    {
+        print("Boosting");
+        rb.AddForce(transform.forward * boostForce);
     }
 
     public void Reset()
