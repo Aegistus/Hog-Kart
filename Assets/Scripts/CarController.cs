@@ -24,6 +24,7 @@ public class CarController : MonoBehaviour
     /// </summary>
     public WheelCollider[] wheelColliders;
     public Transform[] wheelTransforms;
+    [SerializeField] AudioSource boostAudio;
 
     List<MeshRenderer> brakeLightMeshes = new();
     List<Light> brakeLightLights = new();
@@ -189,6 +190,7 @@ public class CarController : MonoBehaviour
             return;
         }
         rb.AddForce(transform.forward * boostForce);
+        boostAudio.Play();
         CurrentBoostCooldown = boostCooldown;
     }
 
