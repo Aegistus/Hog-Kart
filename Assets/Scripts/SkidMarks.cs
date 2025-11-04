@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkidMarks : MonoBehaviour
 {
     [SerializeField] WheelCollider wheel;
+    [SerializeField] ParticleSystem dust;
 
     bool isDrifting = false;
     readonly float lateralSlipThreshold = .25f;
@@ -18,6 +19,7 @@ public class SkidMarks : MonoBehaviour
             trail.emitting = false;
             trail.Clear();
         };
+        dust.Stop();
         trail = GetComponent<TrailRenderer>();
         driftAudio = GetComponent<AudioSource>();
         trail.emitting = true;
@@ -49,10 +51,12 @@ public class SkidMarks : MonoBehaviour
         if (starting)
         {
             driftAudio.Play();
+            dust.Play();
         }
         else
         {
             driftAudio.Stop();
+            dust.Stop();
         }
     }
 }
