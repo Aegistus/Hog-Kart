@@ -23,7 +23,7 @@ public class CheckpointManager : MonoBehaviour
 
     private void Start()
     {
-        // initialize all checkpoints
+        // initialize and get all checkpoints. Check points should be children ordered by their order in the race.
         allCheckpoints.AddRange(GetComponentsInChildren<Checkpoint>());
         allCheckpoints[0].Initialize(allCheckpoints[1], null, 1);
         for (int i = 1; i < allCheckpoints.Count - 1; i++)
@@ -37,7 +37,8 @@ public class CheckpointManager : MonoBehaviour
             checkpoint.OnCheckpointReached += (checkpoint) => CurrentCheckpoint = checkpoint;
         }
 
-        allCheckpoints[0].Activate();
+        // mark the starting line as having been reached.
+        allCheckpoints[0].MarkAsReached();
     }
 
     private void Update()

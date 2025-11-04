@@ -32,6 +32,18 @@ public class Checkpoint : MonoBehaviour
         checkpointVisuals.SetActive(true);
     }
 
+    public void MarkAsReached()
+    {
+        CheckpointReached = true;
+        checkpointVisuals.SetActive(false);
+        if (next != null)
+        {
+            next.Activate();
+            print(next);
+        }
+        OnCheckpointReached?.Invoke(this);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (CheckpointReached)
@@ -41,14 +53,7 @@ public class Checkpoint : MonoBehaviour
         var player = other.GetComponentInParent<CarController>();
         if (player != null)
         {
-            CheckpointReached = true;
-            checkpointVisuals.SetActive(false);
-            if (next != null)
-            {
-                next.Activate();
-                print(next);
-            }
-            OnCheckpointReached?.Invoke(this);
+            MarkAsReached();
         }
     }
 }
