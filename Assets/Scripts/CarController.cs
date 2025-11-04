@@ -7,6 +7,11 @@ public class CarController : MonoBehaviour
 {
     public event Action OnReset;
 
+    public bool InputDisabled { get; set; } = false;
+    public float BoostCooldown => boostCooldown;
+    public float CurrentBoostCooldown { get; private set; }
+    public float SpeedLimit => speedLimit;
+
     [SerializeField] Transform cameraHolder;
     [SerializeField] float motorForce = 100f;
     [SerializeField] float powerslideForce = 1000f;
@@ -49,12 +54,7 @@ public class CarController : MonoBehaviour
         }
     }
 
-    public float BoostCooldown => boostCooldown;
-    public float CurrentBoostCooldown { get; private set; }
 
-    public float SpeedLimit => speedLimit;
-
-    public float MotorForce => wheelColliders[0].motorTorque;
 
     private void Awake()
     {
@@ -64,6 +64,11 @@ public class CarController : MonoBehaviour
             brakeLightMeshes.Add(brakeLights[i].GetComponent<MeshRenderer>());
             brakeLightLights.Add(brakeLights[i].GetComponentInChildren<Light>());
         }
+    }
+
+    private void Start()
+    {
+        FindAnyObjectByType<CheckpointManager>().OnRaceEnd += () => InputDisabled = true;
     }
 
     private void Update()
@@ -81,6 +86,12 @@ public class CarController : MonoBehaviour
 
     void GetInput()
     {
+        if (InputDisabled)
+        {
+            verticalInput = 0;
+            horizontalInput = 0;
+            return;
+        }
         var forwardVector = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
         horizontalInput = Vector3.SignedAngle(forwardVector, cameraHolder.forward, transform.up);
         if (horizontalInput > 180 - minSteerAngle || horizontalInput < -180 + minSteerAngle)

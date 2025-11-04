@@ -8,6 +8,8 @@ public class RaceTimer : MonoBehaviour
 {
     [SerializeField] TMP_Text timerText;
 
+    public float CurrentTime => time;
+
     float time = 0f;
     bool started = false;
 
