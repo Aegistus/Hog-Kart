@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Text;
 
-public class Timer : MonoBehaviour
+public class RaceTimer : MonoBehaviour
 {
     [SerializeField] TMP_Text timerText;
 
@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         StartTimer();
+        FindAnyObjectByType<CheckpointManager>().OnRaceEnd += () => started = false;
     }
 
     public void StartTimer()

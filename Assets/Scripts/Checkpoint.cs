@@ -10,10 +10,9 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] GameObject checkpointVisuals;
 
     public bool CheckpointReached { get; private set; }
+    public bool Activated { get; private set; }
 
-    Checkpoint previous;
-    Checkpoint next;
-    int checkpointNumber;
+    public Checkpoint Next { get; private set; }
 
     private void Awake()
     {
@@ -22,31 +21,30 @@ public class Checkpoint : MonoBehaviour
 
     public void Initialize(Checkpoint next, Checkpoint previous, int checkpointNumber)
     {
-        this.next = next;
-        this.previous = previous;
-        this.checkpointNumber = checkpointNumber;
+        this.Next = next;
     }
 
     public void Activate()
     {
         checkpointVisuals.SetActive(true);
+        Activated = true;
     }
 
     public void MarkAsReached()
     {
         CheckpointReached = true;
         checkpointVisuals.SetActive(false);
-        if (next != null)
+        if (Next != null)
         {
-            next.Activate();
-            print(next);
+            Next.Activate();
+            print(Next);
         }
         OnCheckpointReached?.Invoke(this);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (CheckpointReached)
+        if (CheckpointReached || !Activated)
         {
             return;
         }

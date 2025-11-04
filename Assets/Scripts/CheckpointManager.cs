@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CheckpointManager : MonoBehaviour
 {
+    public event Action OnRaceEnd;
+
     public CheckpointManager Instance { get; private set; }
-    public Checkpoint CurrentCheckpoint { get; private set; }
+    public Checkpoint CurrentRespawnCheckpoint { get; private set; }
 
     List<Checkpoint> allCheckpoints = new();
 
@@ -34,7 +37,7 @@ public class CheckpointManager : MonoBehaviour
 
         foreach (var checkpoint in allCheckpoints)
         {
-            checkpoint.OnCheckpointReached += (checkpoint) => CurrentCheckpoint = checkpoint;
+            checkpoint.OnCheckpointReached += OnCheckpointReached;
         }
 
         // mark the starting line as having been reached.
@@ -55,8 +58,18 @@ public class CheckpointManager : MonoBehaviour
         var camera = FindObjectOfType<CameraController>();
 
         player.Reset();
-        player.transform.position = CurrentCheckpoint.transform.position + Vector3.up * 3;
-        player.transform.rotation = CurrentCheckpoint.transform.rotation;
-        camera.transform.position = CurrentCheckpoint.transform.position;
+        player.transform.position = CurrentRespawnCheckpoint.transform.position + Vector3.up * 3;
+        player.transform.rotation = CurrentRespawnCheckpoint.transform.rotation;
+        camera.transform.position = CurrentRespawnCheckpoint.transform.position;
+    }
+
+    public void OnCheckpointReached(Checkpoint checkpoint)
+    {
+        CurrentRespawnCheckpoint = checkpoint;
+        if (CurrentRespawnCheckpoint.Next == null)
+        {
+            // End Race
+            OnRaceEnd?.Invoke();
+        }
     }
 }
