@@ -6,6 +6,8 @@ using System.Text;
 
 public class RaceTimer : MonoBehaviour
 {
+    public static RaceTimer Instance { get; private set; }
+
     [SerializeField] TMP_Text timerText;
     [SerializeField] GameObject checkpointTimerUIPrefab;
 
@@ -14,13 +16,30 @@ public class RaceTimer : MonoBehaviour
     float overallTime = 0f;
     bool started = false;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     private void Start()
     {
         CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
         checkpointManager.OnRaceEnd += () => started = false;
-        for (int i = 0; i < checkpointManager.CheckpointCount; i++)
+        // all checkpoints excluding finish line
+        for (int i = 1; i < checkpointManager.CheckpointCount - 1; i++)
         {
-            Instantiate(checkpointTimerUIPrefab, transform);
+            var checkpointTimer = Instantiate(checkpointTimerUIPrefab, transform).GetComponent<CheckpointTimerUI>();
+            var checkpoint = checkpointManager.GetCheckpoint(i);
+            checkpointTimer.LinkedCheckpoint = checkpoint;
+            checkpointTimer.checkpointNameText.text = checkpoint.CheckpointName;
+            //checkpointTimer.previousTimeText.text = 
         }
 
         StartTimer();
@@ -38,6 +57,7 @@ public class RaceTimer : MonoBehaviour
         {
             overallTime += Time.deltaTime;
             timerText.text = ConvertToTimeString(overallTime);
+
         }
     }
 

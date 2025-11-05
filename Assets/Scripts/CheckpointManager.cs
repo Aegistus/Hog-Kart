@@ -9,7 +9,8 @@ public class CheckpointManager : MonoBehaviour
 
     public CheckpointManager Instance { get; private set; }
     public Checkpoint CurrentRespawnCheckpoint { get; private set; }
-    public int CheckpointCount => allCheckpoints.Count - 1;
+    public Checkpoint NextCheckpoint => CurrentRespawnCheckpoint.Next;
+    public int CheckpointCount => allCheckpoints.Count;
 
     List<Checkpoint> allCheckpoints = new();
 
@@ -51,6 +52,11 @@ public class CheckpointManager : MonoBehaviour
         {
             ResetPlayer();
         }
+    }
+
+    public Checkpoint GetCheckpoint(int number)
+    {
+        return allCheckpoints[number];
     }
 
     public void ResetPlayer()

@@ -8,10 +8,12 @@ public class Checkpoint : MonoBehaviour
     public event Action<Checkpoint> OnCheckpointReached;
 
     [SerializeField] GameObject checkpointVisuals;
+    [SerializeField] string checkpointName = "Checkpoint";
 
     public bool CheckpointReached { get; private set; }
     public bool Activated { get; private set; }
 
+    public string CheckpointName => checkpointName;
     public int CheckpointNumber { get; private set; }
     public Checkpoint Next { get; private set; }
 
@@ -35,6 +37,7 @@ public class Checkpoint : MonoBehaviour
     public void MarkAsReached()
     {
         CheckpointReached = true;
+        Activated = false;
         checkpointVisuals.SetActive(false);
         if (Next != null)
         {
