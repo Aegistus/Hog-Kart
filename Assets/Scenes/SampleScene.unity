@@ -1518,7 +1518,7 @@ PrefabInstance:
       objectReference: {fileID: 805935945}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1934
+      value: 1937
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2260,7 +2260,7 @@ PrefabInstance:
       objectReference: {fileID: 1109980819}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1934
+      value: 1937
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2508,7 +2508,7 @@ PrefabInstance:
       objectReference: {fileID: 1257570057}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1937
+      value: 1940
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5497,7 +5497,7 @@ PrefabInstance:
       objectReference: {fileID: 2086159401}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1934
+      value: 1937
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17209,7 +17209,7 @@ PrefabInstance:
       objectReference: {fileID: 899248678}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1934
+      value: 1937
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23845,6 +23845,50 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1518354445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1518354447}
+  - component: {fileID: 1518354446}
+  m_Layer: 0
+  m_Name: SaveLoadSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1518354446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518354445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b306cea9d3ed2c409f0778c2037e7b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1518354447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518354445}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.077894, y: -62.181442, z: 48.635204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1519160535
 GameObject:
   m_ObjectHideFlags: 0
@@ -29752,7 +29796,7 @@ PrefabInstance:
       objectReference: {fileID: 867259567}
     - target: {fileID: 6942016019772437290, guid: 2f86af2cea297c242acfd61f13505e47, type: 3}
       propertyPath: m_VersionIndex
-      value: 1934
+      value: 1937
       objectReference: {fileID: 0}
     - target: {fileID: 7842704239701524261, guid: 2f86af2cea297c242acfd61f13505e47, type: 3}
       propertyPath: m_Name
@@ -30138,7 +30182,7 @@ PrefabInstance:
       objectReference: {fileID: 213409238}
     - target: {fileID: 8952530177813874794, guid: 92f0ab49619bf144aab7454372aa0692, type: 3}
       propertyPath: m_VersionIndex
-      value: 1946
+      value: 1949
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30211,6 +30255,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1518354447}
   - {fileID: 3187617762136843918}
   - {fileID: 705507995}
   - {fileID: 1396848820}

@@ -11,7 +11,7 @@ public class FinalTimeUI : MonoBehaviour
     public void Start()
     {
         timer = FindAnyObjectByType<RaceTimer>();
-        FindAnyObjectByType<CheckpointManager>().OnRaceEnd += UpdateFinalTime; ;
+        FindAnyObjectByType<RaceManager>().OnRaceEnd += UpdateFinalTime; ;
     }
 
     private void UpdateFinalTime()

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class SaveData : MonoBehaviour
+public class SaveData
 {
     public class MapPerformanceData
     {
@@ -14,4 +14,15 @@ public class SaveData : MonoBehaviour
     }
 
     public List<MapPerformanceData> mapData = new();
+
+    public void InitializeDefault(string[] mapNames)
+    {
+        for (int i = 0; i < mapNames.Length; i++)
+        {
+            MapPerformanceData map = new();
+            map.mapName = mapNames[i];
+            map.bestOverallTime = float.MaxValue;
+            map.checkpointTimes = new float[100];
+        }
+    }
 }

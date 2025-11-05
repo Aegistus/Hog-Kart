@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CheckpointManager : MonoBehaviour
+public class RaceManager : MonoBehaviour
 {
     public event Action OnRaceEnd;
 
-    public CheckpointManager Instance { get; private set; }
+    [SerializeField] string mapName;
+
+    public static RaceManager Instance { get; private set; }
+    public static readonly string[] allMapNames = { "Valhalla", };
+
+    public string MapName => mapName;
     public Checkpoint CurrentRespawnCheckpoint { get; private set; }
     public Checkpoint NextCheckpoint => CurrentRespawnCheckpoint.Next;
     public int CheckpointCount => allCheckpoints.Count;
@@ -33,7 +38,7 @@ public class CheckpointManager : MonoBehaviour
         allCheckpoints[0].Initialize(allCheckpoints[1], null, 1);
         for (int i = 1; i < allCheckpoints.Count - 1; i++)
         {
-            allCheckpoints[i].Initialize(allCheckpoints[i + 1], allCheckpoints[i - 1], i + 1);
+            allCheckpoints[i].Initialize(allCheckpoints[i + 1], allCheckpoints[i - 1], i);
         }
         allCheckpoints[^1].Initialize(null, allCheckpoints[^2], allCheckpoints.Count);
 

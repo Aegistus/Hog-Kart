@@ -12,7 +12,7 @@ public class RaceEndUI : MonoBehaviour
         }
 
 
-        FindAnyObjectByType<CheckpointManager>().OnRaceEnd += () =>
+        FindAnyObjectByType<RaceManager>().OnRaceEnd += () =>
         {
             foreach (Transform child in transform)
             {

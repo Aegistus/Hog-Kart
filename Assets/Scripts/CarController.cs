@@ -68,7 +68,7 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
-        FindAnyObjectByType<CheckpointManager>().OnRaceEnd += () => InputDisabled = true;
+        FindAnyObjectByType<RaceManager>().OnRaceEnd += () => InputDisabled = true;
     }
 
     private void Update()
