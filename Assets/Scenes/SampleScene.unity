@@ -1518,7 +1518,7 @@ PrefabInstance:
       objectReference: {fileID: 805935945}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1937
+      value: 1943
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2260,7 +2260,7 @@ PrefabInstance:
       objectReference: {fileID: 1109980819}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1937
+      value: 1943
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2508,7 +2508,7 @@ PrefabInstance:
       objectReference: {fileID: 1257570057}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1940
+      value: 1946
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5497,7 +5497,7 @@ PrefabInstance:
       objectReference: {fileID: 2086159401}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1937
+      value: 1943
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17209,7 +17209,7 @@ PrefabInstance:
       objectReference: {fileID: 899248678}
     - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1937
+      value: 1943
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29796,11 +29796,15 @@ PrefabInstance:
       objectReference: {fileID: 867259567}
     - target: {fileID: 6942016019772437290, guid: 2f86af2cea297c242acfd61f13505e47, type: 3}
       propertyPath: m_VersionIndex
-      value: 1937
+      value: 1943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715528572495194315, guid: 2f86af2cea297c242acfd61f13505e47, type: 3}
+      propertyPath: mapName
+      value: TestScene
       objectReference: {fileID: 0}
     - target: {fileID: 7842704239701524261, guid: 2f86af2cea297c242acfd61f13505e47, type: 3}
       propertyPath: m_Name
-      value: Checkpoint Manager
+      value: Race Manager
       objectReference: {fileID: 0}
     - target: {fileID: 8362351561163625793, guid: 2f86af2cea297c242acfd61f13505e47, type: 3}
       propertyPath: m_LocalScale.x
@@ -30182,7 +30186,7 @@ PrefabInstance:
       objectReference: {fileID: 213409238}
     - target: {fileID: 8952530177813874794, guid: 92f0ab49619bf144aab7454372aa0692, type: 3}
       propertyPath: m_VersionIndex
-      value: 1949
+      value: 1955
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

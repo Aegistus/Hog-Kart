@@ -10,7 +10,7 @@ public class RaceManager : MonoBehaviour
     [SerializeField] string mapName;
 
     public static RaceManager Instance { get; private set; }
-    public static readonly string[] allMapNames = { "Valhalla", };
+    public static readonly string[] allMapNames = { "TestScene", "Valhalla", };
 
     public string MapName => mapName;
     public Checkpoint CurrentRespawnCheckpoint { get; private set; }
@@ -80,8 +80,13 @@ public class RaceManager : MonoBehaviour
         CurrentRespawnCheckpoint = checkpoint;
         if (CurrentRespawnCheckpoint.Next == null)
         {
-            // End Race
-            OnRaceEnd?.Invoke();
+            EndRace();
         }
+    }
+
+    void EndRace()
+    {
+
+        OnRaceEnd?.Invoke();
     }
 }

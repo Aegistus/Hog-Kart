@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using EditorAttributes;
+using System;
 
 public class SaveLoadSystem : MonoBehaviour
 {
@@ -25,9 +27,20 @@ public class SaveLoadSystem : MonoBehaviour
         LoadData();
     }
 
-    public void SaveData(string map, float bestTime, float[] checkpointTimes)
+    public void SaveData()
     {
-
+        try
+        {
+            FileStream saveStream = new (filePath, FileMode.OpenOrCreate);
+            BinaryFormatter converter = new();
+            converter.Serialize(saveStream, currentSaveData);
+            saveStream.Close();
+        }
+        catch (Exception e)
+        {
+            print(e.ToString());
+            Debug.LogWarning("WARNING: Unable to save game data to file.");
+        }
     }
 
     public void LoadData()
@@ -35,18 +48,29 @@ public class SaveLoadSystem : MonoBehaviour
         SaveData saveData;
         try
         {
-            FileStream saveStream = new FileStream(filePath, FileMode.Open);
+            FileStream loadStream = new(filePath, FileMode.Open);
             BinaryFormatter converter = new();
-            saveData = converter.Deserialize(saveStream) as SaveData;
-            saveStream.Close();
+            saveData = converter.Deserialize(loadStream) as SaveData;
+            loadStream.Close();
         }
-        catch
+        catch (Exception e)
         {
+            print(e.ToString());
             Debug.LogWarning("No save file found, generating default save data");
             saveData = new();
             saveData.InitializeDefault(RaceManager.allMapNames);
         }
         currentSaveData = saveData;
+    }
+
+    [GUIColor(GUIColor.Red)]
+    [Button("CLEAR DATA", 30f)]
+    public void ClearData()
+    {
+        filePath = "C:/Users/joeba/AppData/LocalLow/DefaultCompany/Drifting Car Test/data";
+        currentSaveData = new();
+        currentSaveData.InitializeDefault(RaceManager.allMapNames);
+        SaveData();
     }
 
     public float GetMapBestTime(string mapName)
@@ -71,5 +95,21 @@ public class SaveLoadSystem : MonoBehaviour
             }
         }
         return 0;
+    }
+
+    public void SetMapBestTimes(string mapName, float newTime, float[] checkpointTimes)
+    {
+        for (int i = 0; i < currentSaveData.mapData.Count; i++)
+        {
+            if (currentSaveData.mapData[i].mapName == mapName)
+            {
+                currentSaveData.mapData[i].bestOverallTime = newTime;
+                for (int j = 0; j < checkpointTimes.Length; j++)
+                {
+                    currentSaveData.mapData[i].checkpointTimes[j] = checkpointTimes[j];
+                }
+                return;
+            }
+        }
     }
 }

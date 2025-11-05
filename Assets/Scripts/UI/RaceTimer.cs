@@ -15,6 +15,7 @@ public class RaceTimer : MonoBehaviour
 
     float overallTime = 0f;
     bool started = false;
+    List<float> checkpointTimes = new();
 
     private void Awake()
     {
@@ -31,12 +32,13 @@ public class RaceTimer : MonoBehaviour
     private void Start()
     {
         RaceManager raceManager = RaceManager.Instance;
-        raceManager.OnRaceEnd += () => started = false;
+        raceManager.OnRaceEnd += EndTimer;
         // all checkpoints excluding finish line
         for (int i = 1; i < raceManager.CheckpointCount - 1; i++)
         {
             var checkpointTimer = Instantiate(checkpointTimerUIPrefab, transform).GetComponent<CheckpointTimerUI>();
             var checkpoint = raceManager.GetCheckpoint(i);
+            checkpoint.OnCheckpointReached += (Checkpoint _) => checkpointTimes.Add(CurrentTime);
             checkpointTimer.LinkedCheckpoint = checkpoint;
             checkpointTimer.checkpointNameText.text = checkpoint.CheckpointName;
             checkpointTimer.previousTimeText.text = ConvertToTimeString(SaveLoadSystem.Instance.GetCheckpointBestTime(raceManager.MapName, i));
@@ -50,13 +52,23 @@ public class RaceTimer : MonoBehaviour
         started = true;
     }
 
+    public void EndTimer()
+    {
+        started = false;
+        float previousBestTime = SaveLoadSystem.Instance.GetMapBestTime(RaceManager.Instance.MapName);
+        if (CurrentTime < previousBestTime || previousBestTime == 0)
+        {
+            SaveLoadSystem.Instance.SetMapBestTimes(RaceManager.Instance.MapName, CurrentTime, checkpointTimes.ToArray());
+        }
+        SaveLoadSystem.Instance.SaveData();
+    }
+
     private void Update()
     {
         if (started)
         {
             overallTime += Time.deltaTime;
             timerText.text = ConvertToTimeString(overallTime);
-
         }
     }
 

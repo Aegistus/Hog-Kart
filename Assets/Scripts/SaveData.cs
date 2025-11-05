@@ -6,6 +6,7 @@ using System;
 [Serializable]
 public class SaveData
 {
+    [Serializable]
     public class MapPerformanceData
     {
         public string mapName;
@@ -23,6 +24,7 @@ public class SaveData
             map.mapName = mapNames[i];
             map.bestOverallTime = float.MaxValue;
             map.checkpointTimes = new float[100];
+            mapData.Add(map);
         }
     }
 }

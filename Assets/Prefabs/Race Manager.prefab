@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6099354803137257196}
   - component: {fileID: 7715528572495194315}
   m_Layer: 0
-  m_Name: Checkpoint Manager
+  m_Name: Race Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdf61c2d8d8cff4c8156851769e7808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapName: 
 --- !u!1001 &1305619148332362770
 PrefabInstance:
   m_ObjectHideFlags: 0
