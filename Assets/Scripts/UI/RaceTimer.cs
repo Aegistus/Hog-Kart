@@ -41,7 +41,7 @@ public class RaceTimer : MonoBehaviour
             checkpoint.OnCheckpointReached += (Checkpoint _) => checkpointTimes.Add(CurrentTime);
             checkpointTimer.LinkedCheckpoint = checkpoint;
             checkpointTimer.checkpointNameText.text = checkpoint.CheckpointName;
-            checkpointTimer.previousTimeText.text = ConvertToTimeString(SaveLoadSystem.Instance.GetCheckpointBestTime(raceManager.MapName, i));
+            checkpointTimer.previousTimeText.text = ConvertToTimeString(SaveLoadSystem.Instance.GetCheckpointBestTime(raceManager.MapName, i - 1));
         }
 
         StartTimer();
