@@ -7,16 +7,23 @@ using System.Text;
 public class RaceTimer : MonoBehaviour
 {
     [SerializeField] TMP_Text timerText;
+    [SerializeField] GameObject checkpointTimerUIPrefab;
 
-    public float CurrentTime => time;
+    public float CurrentTime => overallTime;
 
-    float time = 0f;
+    float overallTime = 0f;
     bool started = false;
 
     private void Start()
     {
+        CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
+        checkpointManager.OnRaceEnd += () => started = false;
+        for (int i = 0; i < checkpointManager.CheckpointCount; i++)
+        {
+            Instantiate(checkpointTimerUIPrefab, transform);
+        }
+
         StartTimer();
-        FindAnyObjectByType<CheckpointManager>().OnRaceEnd += () => started = false;
     }
 
     public void StartTimer()
@@ -29,8 +36,8 @@ public class RaceTimer : MonoBehaviour
     {
         if (started)
         {
-            time += Time.deltaTime;
-            timerText.text = ConvertToTimeString(time);
+            overallTime += Time.deltaTime;
+            timerText.text = ConvertToTimeString(overallTime);
         }
     }
 

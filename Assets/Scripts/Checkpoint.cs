@@ -12,6 +12,7 @@ public class Checkpoint : MonoBehaviour
     public bool CheckpointReached { get; private set; }
     public bool Activated { get; private set; }
 
+    public int CheckpointNumber { get; private set; }
     public Checkpoint Next { get; private set; }
 
     private void Awake()
@@ -21,7 +22,8 @@ public class Checkpoint : MonoBehaviour
 
     public void Initialize(Checkpoint next, Checkpoint previous, int checkpointNumber)
     {
-        this.Next = next;
+        Next = next;
+        CheckpointNumber = checkpointNumber;
     }
 
     public void Activate()

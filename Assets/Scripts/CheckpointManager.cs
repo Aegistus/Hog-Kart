@@ -9,6 +9,7 @@ public class CheckpointManager : MonoBehaviour
 
     public CheckpointManager Instance { get; private set; }
     public Checkpoint CurrentRespawnCheckpoint { get; private set; }
+    public int CheckpointCount => allCheckpoints.Count - 1;
 
     List<Checkpoint> allCheckpoints = new();
 
@@ -22,12 +23,12 @@ public class CheckpointManager : MonoBehaviour
         {
             Destroy(this);
         }
+        allCheckpoints.AddRange(GetComponentsInChildren<Checkpoint>());
     }
 
     private void Start()
     {
         // initialize and get all checkpoints. Check points should be children ordered by their order in the race.
-        allCheckpoints.AddRange(GetComponentsInChildren<Checkpoint>());
         allCheckpoints[0].Initialize(allCheckpoints[1], null, 1);
         for (int i = 1; i < allCheckpoints.Count - 1; i++)
         {
