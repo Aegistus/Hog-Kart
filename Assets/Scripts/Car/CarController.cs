@@ -66,11 +66,6 @@ public class CarController : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        FindAnyObjectByType<RaceManager>().OnRaceEnd += () => InputDisabled = true;
-    }
-
     private void Update()
     {
         GetInput();

@@ -70,8 +70,7 @@ public class RaceManager : MonoBehaviour
         var camera = FindObjectOfType<CameraController>();
 
         player.Reset();
-        player.transform.position = CurrentRespawnCheckpoint.transform.position + Vector3.up * 3;
-        player.transform.rotation = CurrentRespawnCheckpoint.transform.rotation;
+        player.transform.SetPositionAndRotation(CurrentRespawnCheckpoint.transform.position + Vector3.up * 3, CurrentRespawnCheckpoint.transform.rotation);
         camera.transform.position = CurrentRespawnCheckpoint.transform.position;
     }
 
@@ -86,7 +85,7 @@ public class RaceManager : MonoBehaviour
 
     void EndRace()
     {
-
+        FindAnyObjectByType<CarController>().InputDisabled = true;
         OnRaceEnd?.Invoke();
     }
 }
