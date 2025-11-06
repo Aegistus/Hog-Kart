@@ -10,6 +10,12 @@
       },
       "hash": "c54f63cb18a22382215b142b63e232f0f86fff58"
     },
+    "com.kybernetik.ultevents": {
+      "version": "file:com.kybernetik.ultevents",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.collab-proxy": {
       "version": "2.9.3",
       "depth": 0,
