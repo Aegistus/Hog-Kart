@@ -17,9 +17,12 @@ public class Checkpoint : MonoBehaviour
     public int CheckpointNumber { get; private set; }
     public Checkpoint Next { get; private set; }
 
+    AudioSource reachedAudio;
+
     private void Awake()
     {
         checkpointVisuals.SetActive(false);
+        reachedAudio = GetComponent<AudioSource>();
     }
 
     public void Initialize(Checkpoint next, Checkpoint previous, int checkpointNumber)
@@ -44,6 +47,7 @@ public class Checkpoint : MonoBehaviour
             Next.Activate();
             print(Next);
         }
+        reachedAudio?.Play();
         OnCheckpointReached?.Invoke(this);
     }
 

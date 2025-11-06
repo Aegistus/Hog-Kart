@@ -50,6 +50,7 @@ public class SkidMarks : MonoBehaviour
         trail.emitting = starting;
         if (starting)
         {
+            driftAudio.pitch = 1 + Random.Range(-.1f, .1f);
             driftAudio.Play();
             dust.Play();
         }
