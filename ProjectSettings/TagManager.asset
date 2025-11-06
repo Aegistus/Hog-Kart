@@ -11,7 +11,7 @@ TagManager:
   - Invisible
   - Water
   - UI
-  - 
+  - Post Processing
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Particles
+    uniqueID: 1721369255
+    locked: 0
+  - name: UI
+    uniqueID: 244196769
     locked: 0
