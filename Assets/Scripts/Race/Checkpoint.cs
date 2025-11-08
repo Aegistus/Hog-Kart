@@ -47,7 +47,10 @@ public class Checkpoint : MonoBehaviour
             Next.Activate();
             print(Next);
         }
-        reachedAudio?.Play();
+        if (reachedAudio)
+        {
+            reachedAudio.Play();
+        }
         OnCheckpointReached?.Invoke(this);
     }
 
