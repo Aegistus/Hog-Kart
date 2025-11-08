@@ -6,15 +6,19 @@ public class SkidMarks : MonoBehaviour
 {
     [SerializeField] WheelCollider wheel;
     [SerializeField] ParticleSystem dust;
+    [SerializeField] ParticleSystem frozenDust;
 
     bool isDrifting = false;
+    bool isSpinning = false;
     readonly float lateralSlipThreshold = .25f;
     TrailRenderer trail;
     AudioSource driftAudio;
+    CarController car;
 
     private void Awake()
     {
-        GetComponentInParent<CarController>().OnReset += () =>
+        car = GetComponentInParent<CarController>();
+        car.OnReset += () =>
         {
             trail.emitting = false;
             trail.Clear();
@@ -22,7 +26,7 @@ public class SkidMarks : MonoBehaviour
         dust.Stop();
         trail = GetComponent<TrailRenderer>();
         driftAudio = GetComponent<AudioSource>();
-        trail.emitting = true;
+        trail.emitting = false;
     }
 
     private void Update()
@@ -42,6 +46,20 @@ public class SkidMarks : MonoBehaviour
                 Drift(false);
             }
         }
+        if (car.Frozen && wheel.rpm > 5)
+        {
+            if (!isSpinning)
+            {
+                SpinInPlace(true);
+            }
+        }
+        else
+        {
+            if (isSpinning)
+            {
+                SpinInPlace(false);
+            }
+        }
     }
 
     void Drift(bool starting)
@@ -58,6 +76,21 @@ public class SkidMarks : MonoBehaviour
         {
             driftAudio.Stop();
             dust.Stop();
+        }
+    }
+
+    void SpinInPlace(bool starting)
+    {
+        isSpinning = starting;
+        if (starting)
+        {
+            frozenDust.Play();
+            driftAudio.Play();
+        }
+        else
+        {
+            frozenDust.Stop();
+            driftAudio.Stop();
         }
     }
 }

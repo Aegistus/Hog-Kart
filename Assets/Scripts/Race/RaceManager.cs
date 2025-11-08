@@ -5,9 +5,11 @@ using System;
 
 public class RaceManager : MonoBehaviour
 {
+    public event Action OnRaceStart;
     public event Action OnRaceEnd;
 
     [SerializeField] string mapName;
+    [SerializeField] float startRaceDelay = 5f;
 
     public static RaceManager Instance { get; private set; }
     public static readonly string[] allMapNames = { "TestScene", "Valhalla", };
@@ -18,6 +20,7 @@ public class RaceManager : MonoBehaviour
     public int CheckpointCount => allCheckpoints.Count;
 
     List<Checkpoint> allCheckpoints = new();
+    CarController car;
 
     private void Awake()
     {
@@ -30,6 +33,7 @@ public class RaceManager : MonoBehaviour
             Destroy(this);
         }
         allCheckpoints.AddRange(GetComponentsInChildren<Checkpoint>());
+        car = FindAnyObjectByType<CarController>();
     }
 
     private void Start()
@@ -49,6 +53,9 @@ public class RaceManager : MonoBehaviour
 
         // mark the starting line as having been reached.
         allCheckpoints[0].MarkAsReached();
+
+        car.SetCarFrozen(true);
+        Invoke(nameof(StartRace), startRaceDelay);
     }
 
     private void Update()
@@ -57,6 +64,12 @@ public class RaceManager : MonoBehaviour
         {
             ResetPlayer();
         }
+    }
+
+    public void StartRace()
+    {
+        car.SetCarFrozen(false);
+        OnRaceStart?.Invoke();
     }
 
     public Checkpoint GetCheckpoint(int number)
@@ -69,7 +82,7 @@ public class RaceManager : MonoBehaviour
         var player = FindObjectOfType<CarController>();
         var camera = FindObjectOfType<CameraController>();
 
-        player.Reset();
+        player.ResetToLastCheckpoint();
         player.transform.SetPositionAndRotation(CurrentRespawnCheckpoint.transform.position + Vector3.up * 3, CurrentRespawnCheckpoint.transform.rotation);
         camera.transform.position = CurrentRespawnCheckpoint.transform.position;
     }

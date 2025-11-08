@@ -28,18 +28,19 @@ public class CarController : MonoBehaviour
     /// <summary>
     /// Wheel colliders in order of Front Left, Front Right, Back Left, Back Right.
     /// </summary>
-    public WheelCollider[] wheelColliders;
-    public Transform[] wheelTransforms;
+    [SerializeField] WheelCollider[] wheelColliders;
+    [SerializeField] Transform[] wheelTransforms;
     [SerializeField] AudioSource boostAudio;
 
     List<MeshRenderer> brakeLightMeshes = new();
     List<Light> brakeLightLights = new();
+    Rigidbody rb;
     float horizontalInput;
     float verticalInput;
     float currentSteerAngle;
     bool isPowersliding;
     bool isBraking;
-    Rigidbody rb;
+    float defaultWheelForwardStiffness;
 
     public float Speed
     {
@@ -53,8 +54,7 @@ public class CarController : MonoBehaviour
             return speed;
         }
     }
-
-
+    public bool Frozen { get; private set; } = false;
 
     private void Awake()
     {
@@ -64,6 +64,7 @@ public class CarController : MonoBehaviour
             brakeLightMeshes.Add(brakeLights[i].GetComponent<MeshRenderer>());
             brakeLightLights.Add(brakeLights[i].GetComponentInChildren<Light>());
         }
+        defaultWheelForwardStiffness = wheelColliders[0].forwardFriction.stiffness;
     }
 
     private void Update()
@@ -132,6 +133,13 @@ public class CarController : MonoBehaviour
         for (int i = 0; i < wheelColliders.Length; i++)
         {
             wheelColliders[i].brakeTorque = brakeTorque;
+        }
+        if (Frozen && isBraking)
+        {
+            for (int i = 0; i < wheelColliders.Length; i++)
+            {
+                wheelColliders[i].motorTorque = 0;
+            }
         }
     }
 
@@ -205,10 +213,34 @@ public class CarController : MonoBehaviour
         CurrentBoostCooldown = boostCooldown;
     }
 
-    public void Reset()
+    public void ResetToLastCheckpoint()
     {
         rb.velocity = Vector3.zero;
         OnReset.Invoke();
+    }
+
+    public void SetCarFrozen(bool frozen)
+    {
+        Frozen = frozen;
+        if (frozen)
+        {
+            for (int i = 0; i < wheelColliders.Length; i++)
+            {
+                var forwardFric = wheelColliders[i].forwardFriction;
+                forwardFric.stiffness = .01f;
+                wheelColliders[i].forwardFriction = forwardFric;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < wheelColliders.Length; i++)
+            {
+                var forwardFric = wheelColliders[i].forwardFriction;
+                forwardFric.stiffness = defaultWheelForwardStiffness;
+                wheelColliders[i].forwardFriction = forwardFric;
+            }
+        }
+
     }
 }
 

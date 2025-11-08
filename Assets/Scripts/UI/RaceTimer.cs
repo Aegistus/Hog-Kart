@@ -44,7 +44,7 @@ public class RaceTimer : MonoBehaviour
             checkpointTimer.previousTimeText.text = ConvertToTimeString(SaveLoadSystem.Instance.GetCheckpointBestTime(raceManager.MapName, i - 1));
         }
 
-        StartTimer();
+        RaceManager.Instance.OnRaceStart += StartTimer;
     }
 
     public void StartTimer()
