@@ -204,7 +204,14 @@ public class CarController : MonoBehaviour
             print("On Cooldown");
             return;
         }
-        rb.AddForce(transform.forward * boostForce);
+        if (Frozen)
+        {
+            rb.AddForce(-transform.up * boostForce);
+        }
+        else
+        {
+            rb.AddForce(transform.forward * boostForce);
+        }
         boostAudio.Play();
         for (int i = 0; i < boostExhaustParticles.Length; i++)
         {
