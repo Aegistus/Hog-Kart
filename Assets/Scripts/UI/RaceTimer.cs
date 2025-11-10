@@ -40,7 +40,11 @@ public class RaceTimer : MonoBehaviour
         yield return null;
         RaceManager raceManager = RaceManager.Instance;
         raceManager.OnRaceEnd += EndTimer;
-        previousBestText.text = "(PB: " + ConvertToTimeString(SaveLoadSystem.Instance.GetMapBestTime(raceManager.MapName)) + ")";
+        var previousBest = SaveLoadSystem.Instance.GetMapBestTime(raceManager.MapName);
+        if (previousBest < float.MaxValue) // best time is auto-initialized to float.MaxValue
+        {
+            previousBestText.text = "(PB: " + ConvertToTimeString(SaveLoadSystem.Instance.GetMapBestTime(raceManager.MapName)) + ")";
+        }    
         // all checkpoints excluding finish line
         for (int i = 1; i < raceManager.CheckpointCount - 1; i++)
         {
