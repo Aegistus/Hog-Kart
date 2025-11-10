@@ -81,8 +81,13 @@ public class RaceTimer : MonoBehaviour
 
     public static string ConvertToTimeString(float time)
     {
-        // minutes
         stringBuilder.Clear();
+        if (time < 0)
+        {
+            stringBuilder.Append('-');
+        }
+        time = Mathf.Abs(time);
+        // minutes
         int minutes = (int)time / 60;
         if (minutes < 10)
         {
@@ -93,6 +98,39 @@ public class RaceTimer : MonoBehaviour
 
         // seconds
         stringBuilder.Append(":");
+        int seconds = (int)time % 60;
+        if (seconds < 10)
+        {
+            stringBuilder.Append('0');
+        }
+        stringBuilder.Append(seconds);
+
+        // milliseconds
+        stringBuilder.Append(".");
+        int milliseconds = (int)(time * 100) % 100;
+        if (milliseconds < 10)
+        {
+            stringBuilder.Append('0');
+        }
+        stringBuilder.Append(milliseconds);
+        return stringBuilder.ToString();
+    }
+
+    public static string ConvertToSecondsString(float time, bool appendPlus = false)
+    {
+        stringBuilder.Clear();
+        if (time < 0)
+        {
+            stringBuilder.Append('-');
+        }
+        else if (appendPlus)
+        {
+            stringBuilder.Append('+');
+        }
+        time = Mathf.Abs(time);
+        // minutes
+
+        // seconds
         int seconds = (int)time % 60;
         if (seconds < 10)
         {

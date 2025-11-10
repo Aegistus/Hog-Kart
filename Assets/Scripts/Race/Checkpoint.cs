@@ -16,6 +16,7 @@ public class Checkpoint : MonoBehaviour
     public string CheckpointName => checkpointName;
     public int CheckpointIndex { get; private set; }
     public Checkpoint Next { get; private set; }
+    public Checkpoint Previous { get; private set; }
 
     AudioSource reachedAudio;
 
