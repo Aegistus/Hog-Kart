@@ -5,17 +5,30 @@ using TMPro;
 
 public class CheckpointTimerUI : MonoBehaviour
 {
-    public TMP_Text checkpointNameText;
-    public TMP_Text currentTimeText;
-    public TMP_Text previousTimeText;
+    [SerializeField] TMP_Text checkpointNameText;
+    [SerializeField] TMP_Text timeText;
 
     public Checkpoint LinkedCheckpoint { get; set; }
 
-    private void Update()
+    public void Initialize(Checkpoint linked)
     {
-        if (LinkedCheckpoint.Activated)
-        {
-            currentTimeText.text = RaceTimer.Instance.ConvertToTimeString(RaceTimer.Instance.CurrentTime);
-        }
+        LinkedCheckpoint = linked;
+        LinkedCheckpoint.OnCheckpointReached += UpdateCheckpointTime;
+        checkpointNameText.text = LinkedCheckpoint.CheckpointName;
+        var previousBest = SaveLoadSystem.Instance.GetCheckpointBestTime(RaceManager.Instance.MapName, LinkedCheckpoint.CheckpointIndex);
+        timeText.text = RaceTimer.ConvertToTimeString(previousBest);
     }
+    
+    void UpdateCheckpointTime(Checkpoint _)
+    {
+        timeText.text = RaceTimer.ConvertToTimeString(RaceTimer.Instance.CurrentTime);
+    }
+
+    //private void Update()
+    //{
+    //    if (LinkedCheckpoint.Activated)
+    //    {
+    //        currentTimeText.text = RaceTimer.Instance.ConvertToTimeString(RaceTimer.Instance.CurrentTime);
+    //    }
+    //}
 }

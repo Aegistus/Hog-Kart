@@ -11,11 +11,11 @@ public class FinalTimeUI : MonoBehaviour
     public void Start()
     {
         timer = FindAnyObjectByType<RaceTimer>();
-        FindAnyObjectByType<RaceManager>().OnRaceEnd += UpdateFinalTime; ;
+        FindAnyObjectByType<RaceManager>().OnRaceEnd += UpdateFinalTime;
     }
 
     private void UpdateFinalTime()
     {
-        text.text = timer.ConvertToTimeString(timer.CurrentTime);
+        text.text = RaceTimer.ConvertToTimeString(timer.CurrentTime);
     }
 }

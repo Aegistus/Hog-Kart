@@ -31,6 +31,12 @@ public class RaceTimer : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(Initialize());
+    }
+
+    IEnumerator Initialize()
+    {
+        yield return null;
         RaceManager raceManager = RaceManager.Instance;
         raceManager.OnRaceEnd += EndTimer;
         // all checkpoints excluding finish line
@@ -39,9 +45,7 @@ public class RaceTimer : MonoBehaviour
             var checkpointTimer = Instantiate(checkpointTimerUIPrefab, transform).GetComponent<CheckpointTimerUI>();
             var checkpoint = raceManager.GetCheckpoint(i);
             checkpoint.OnCheckpointReached += (Checkpoint _) => checkpointTimes.Add(CurrentTime);
-            checkpointTimer.LinkedCheckpoint = checkpoint;
-            checkpointTimer.checkpointNameText.text = checkpoint.CheckpointName;
-            checkpointTimer.previousTimeText.text = ConvertToTimeString(SaveLoadSystem.Instance.GetCheckpointBestTime(raceManager.MapName, i - 1));
+            checkpointTimer.Initialize(checkpoint);
         }
 
         RaceManager.Instance.OnRaceStart += StartTimer;
@@ -73,9 +77,9 @@ public class RaceTimer : MonoBehaviour
     }
 
     //string format = "00";
-    StringBuilder stringBuilder = new();
+    static StringBuilder stringBuilder = new();
 
-    public string ConvertToTimeString(float time)
+    public static string ConvertToTimeString(float time)
     {
         // minutes
         stringBuilder.Clear();

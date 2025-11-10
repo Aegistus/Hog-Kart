@@ -38,13 +38,13 @@ public class RaceManager : MonoBehaviour
 
     private void Start()
     {
-        // initialize and get all checkpoints. Check points should be children ordered by their order in the race.
-        allCheckpoints[0].Initialize(allCheckpoints[1], null, 1);
+        // initialize and get all checkpoints. Check points should be children of this gameobject ordered by their order in the race.
+        allCheckpoints[0].Initialize(allCheckpoints[1], null, -1);
         for (int i = 1; i < allCheckpoints.Count - 1; i++)
         {
-            allCheckpoints[i].Initialize(allCheckpoints[i + 1], allCheckpoints[i - 1], i);
+            allCheckpoints[i].Initialize(allCheckpoints[i + 1], allCheckpoints[i - 1], i - 1);
         }
-        allCheckpoints[^1].Initialize(null, allCheckpoints[^2], allCheckpoints.Count);
+        allCheckpoints[^1].Initialize(null, allCheckpoints[^2], allCheckpoints.Count - 2);
 
         foreach (var checkpoint in allCheckpoints)
         {
@@ -92,7 +92,7 @@ public class RaceManager : MonoBehaviour
         CurrentRespawnCheckpoint = checkpoint;
         if (CurrentRespawnCheckpoint.Next == null)
         {
-            EndRace();
+            Invoke(nameof(EndRace), .5f);
         }
     }
 

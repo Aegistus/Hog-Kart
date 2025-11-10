@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour
     public bool Activated { get; private set; }
 
     public string CheckpointName => checkpointName;
-    public int CheckpointNumber { get; private set; }
+    public int CheckpointIndex { get; private set; }
     public Checkpoint Next { get; private set; }
 
     AudioSource reachedAudio;
@@ -25,10 +25,10 @@ public class Checkpoint : MonoBehaviour
         reachedAudio = GetComponent<AudioSource>();
     }
 
-    public void Initialize(Checkpoint next, Checkpoint previous, int checkpointNumber)
+    public void Initialize(Checkpoint next, Checkpoint previous, int checkpointIndex)
     {
         Next = next;
-        CheckpointNumber = checkpointNumber;
+        CheckpointIndex = checkpointIndex;
     }
 
     public void Activate()

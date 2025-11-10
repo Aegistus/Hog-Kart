@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 7446802515446660045}
-  checkpointTimerText: []
+  checkpointTimerUIPrefab: {fileID: 7366169855675944413, guid: 398a01714a67a5240899d98d1d22c5c3, type: 3}
 --- !u!1 &8397275736613070571
 GameObject:
   m_ObjectHideFlags: 0
