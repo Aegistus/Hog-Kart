@@ -9,6 +9,7 @@ public class RaceTimer : MonoBehaviour
     public static RaceTimer Instance { get; private set; }
 
     [SerializeField] TMP_Text timerText;
+    [SerializeField] TMP_Text previousBestText;
     [SerializeField] GameObject checkpointTimerUIPrefab;
 
     public float CurrentTime => overallTime;
@@ -39,6 +40,7 @@ public class RaceTimer : MonoBehaviour
         yield return null;
         RaceManager raceManager = RaceManager.Instance;
         raceManager.OnRaceEnd += EndTimer;
+        previousBestText.text = "(PB: " + ConvertToTimeString(SaveLoadSystem.Instance.GetMapBestTime(raceManager.MapName)) + ")";
         // all checkpoints excluding finish line
         for (int i = 1; i < raceManager.CheckpointCount - 1; i++)
         {
