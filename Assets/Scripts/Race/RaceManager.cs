@@ -5,6 +5,7 @@ using System;
 
 public class RaceManager : MonoBehaviour
 {
+    public event Action OnCountdownStart;
     public event Action OnRaceStart;
     public event Action OnRaceEnd;
 
@@ -55,7 +56,7 @@ public class RaceManager : MonoBehaviour
         allCheckpoints[0].MarkAsReached();
 
         car.SetCarFrozen(true);
-        Invoke(nameof(StartRace), startRaceDelay);
+        car.SetInputDisabled(true);
     }
 
     private void Update()
@@ -64,6 +65,14 @@ public class RaceManager : MonoBehaviour
         {
             ResetPlayer();
         }
+    }
+
+    public void StartCountdown()
+    {
+        car.SetInputDisabled(false);
+        FindAnyObjectByType<CameraController>(FindObjectsInactive.Include).gameObject.SetActive(true);
+        Invoke(nameof(StartRace), startRaceDelay);
+        OnCountdownStart?.Invoke();
     }
 
     public void StartRace()
@@ -98,7 +107,7 @@ public class RaceManager : MonoBehaviour
 
     void EndRace()
     {
-        FindAnyObjectByType<CarController>().InputDisabled = true;
+        car.SetInputDisabled(true);
         OnRaceEnd?.Invoke();
     }
 }

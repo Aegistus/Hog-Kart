@@ -6,8 +6,9 @@ using System;
 public class CarController : MonoBehaviour
 {
     public event Action OnReset;
+    public event Action<bool> OnInputDisabledChange;
 
-    public bool InputDisabled { get; set; } = false;
+    public bool InputDisabled { get; private set; } = false;
     public float BoostCooldown => boostCooldown;
     public float CurrentBoostCooldown { get; private set; }
     public float SpeedLimit => speedLimit;
@@ -247,7 +248,12 @@ public class CarController : MonoBehaviour
                 wheelColliders[i].forwardFriction = forwardFric;
             }
         }
+    }
 
+    public void SetInputDisabled(bool disabled)
+    {
+        InputDisabled = disabled;
+        OnInputDisabledChange?.Invoke(disabled);
     }
 }
 

@@ -14,6 +14,7 @@ public class EngineSound : MonoBehaviour
     private void Awake()
     {
         car = GetComponent<CarController>();
+        car.OnInputDisabledChange += OnEngineStateChange;
         car.OnReset += () =>
         {
             engineAudio.pitch = 1;
@@ -32,6 +33,18 @@ public class EngineSound : MonoBehaviour
         {
             engineAudio.pitch = Mathf.Lerp(engineAudio.pitch, 1, audioChangeSpeed * Time.deltaTime);
             engineAudio.volume = Mathf.Lerp(engineAudio.volume, 1, audioChangeSpeed * Time.deltaTime);
+        }
+    }
+
+    void OnEngineStateChange(bool disabled)
+    {
+        if (disabled)
+        {
+            engineAudio.Stop();
+        }
+        else
+        {
+            engineAudio.Play();
         }
     }
 }

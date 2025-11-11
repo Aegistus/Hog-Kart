@@ -16,7 +16,7 @@ public class StartingLight : MonoBehaviour
         {
             lightRenderers[i].material = offMaterial;
         }
-        Invoke(nameof(StartCountdown), 2);
+        RaceManager.Instance.OnCountdownStart += StartCountdown;
     }
 
     public void StartCountdown()
@@ -26,6 +26,7 @@ public class StartingLight : MonoBehaviour
 
     IEnumerator CountdownCoroutine()
     {
+        yield return new WaitForSeconds(2f);
         lightRenderers[0].material = readyMaterial;
         SoundManager.Instance.PlaySoundGlobal("StartLightReady");
         yield return new WaitForSeconds(countdownInterval);

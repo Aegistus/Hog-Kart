@@ -27,7 +27,7 @@ public class PauseMenu : MonoBehaviour
         IsPaused = true;
         Time.timeScale = 0;
         menu.SetActive(true);
-        FindAnyObjectByType<CarController>().InputDisabled = true;
+        FindAnyObjectByType<CarController>().SetInputDisabled(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -37,7 +37,7 @@ public class PauseMenu : MonoBehaviour
         IsPaused = false;
         Time.timeScale = 1;
         menu.SetActive(false);
-        FindAnyObjectByType<CarController>().InputDisabled = false;
+        FindAnyObjectByType<CarController>().SetInputDisabled(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
