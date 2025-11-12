@@ -23,7 +23,13 @@ public class CameraController : MonoBehaviour
         {
             return;
         }
+        if (car.CarGrappling)
+        {
+            transform.rotation = targetTransform.rotation;
+            return;
+        }
         transform.Rotate(rotationSpeed * Input.GetAxis("Mouse X") * Time.deltaTime * Vector3.up);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
     }
 
     private void FixedUpdate()

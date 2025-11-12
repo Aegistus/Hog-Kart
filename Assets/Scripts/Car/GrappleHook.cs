@@ -12,14 +12,16 @@ public class GrappleHook : MonoBehaviour
 
     Vector3 grapplePoint;
     Rigidbody rb;
+    LineRenderer lineRend;
     float radius;
-    float radiusModifier = 1.5f;
+    float radiusModifier = 1.2f;
     bool grappling = false;
     float maxGrappleDistance = 30f;
 
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody>();
+        lineRend = GetComponent<LineRenderer>();
     }
 
     private void Update()
@@ -36,6 +38,8 @@ public class GrappleHook : MonoBehaviour
         if (Input.GetKeyUp(inputKey))
         {
             grappling = false;
+            lineRend.SetPosition(0, grappleHookBarrel.position);
+            lineRend.SetPosition(1, grappleHookBarrel.position);
         }
     }
 
@@ -49,6 +53,16 @@ public class GrappleHook : MonoBehaviour
             Vector3 newVelocity = Vector3.Project(originalVelocity, tangentVector);
             rb.AddTorque(torqueConstant * newVelocity.magnitude * transform.up);
             rb.velocity = newVelocity;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (Grappling)
+        {
+            // visuals
+            lineRend.SetPosition(0, grapplePoint);
+            lineRend.SetPosition(1, grappleHookBarrel.position);
         }
     }
 }
