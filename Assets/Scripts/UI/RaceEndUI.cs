@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class RaceEndUI : MonoBehaviour
@@ -20,7 +21,7 @@ public class RaceEndUI : MonoBehaviour
             child.gameObject.SetActive(false);
         }
 
-        timer = FindAnyObjectByType<RaceTimer>();
+        timer = FindAnyObjectByType<RaceTimer>(FindObjectsInactive.Include);
         FindAnyObjectByType<RaceManager>().OnRaceEnd += ShowMenu;
 
         previousBest = SaveLoadSystem.Instance.GetMapBestTime(RaceManager.Instance.MapName);
@@ -33,6 +34,8 @@ public class RaceEndUI : MonoBehaviour
     void ShowMenu()
     {
         menu.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         finalTimeText.text = RaceTimer.ConvertToTimeString(timer.CurrentTime);
         if (timer.CurrentTime >= previousBest)
         {
@@ -42,5 +45,17 @@ public class RaceEndUI : MonoBehaviour
         {
             finalTimeText.color = newRecordColor;
         }
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Quit()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
     }
 }
