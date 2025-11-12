@@ -6,8 +6,12 @@ public class GameUI : MonoBehaviour
 {
     private void Start()
     {
-        ShowGameUI(false);
-        FindAnyObjectByType<RaceManager>().OnCountdownStart += () => ShowGameUI(true);
+        RaceManager manager = FindAnyObjectByType<RaceManager>();
+        if (manager != null)
+        {
+            manager.OnCountdownStart += () => ShowGameUI(true);
+            ShowGameUI(false);
+        }
     }
 
     public void ShowGameUI(bool show)
