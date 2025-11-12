@@ -8,6 +8,8 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] KeyCode inputKey;
     [SerializeField] float torqueConstant = 10000;
 
+    public bool Grappling => grappling;
+
     Vector3 grapplePoint;
     Rigidbody rb;
     float radius;

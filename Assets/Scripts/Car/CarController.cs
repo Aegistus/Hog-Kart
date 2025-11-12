@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class CarController : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class CarController : MonoBehaviour
     [SerializeField] WheelCollider[] wheelColliders;
     [SerializeField] Transform[] wheelTransforms;
     [SerializeField] AudioSource boostAudio;
+    [SerializeField] GrappleHook[] grappleHooks;
 
     List<MeshRenderer> brakeLightMeshes = new();
     List<Light> brakeLightLights = new();
@@ -56,6 +58,8 @@ public class CarController : MonoBehaviour
         }
     }
     public bool Frozen { get; private set; } = false;
+    public bool CarGrappling => Array.Exists(grappleHooks, gh => gh.Grappling);
+
 
     private void Awake()
     {
@@ -155,18 +159,28 @@ public class CarController : MonoBehaviour
 
     void HandleSteering()
     {
-        currentSteerAngle = horizontalInput;
-        if (Speed < 0 || Vector3.Dot(Vector3.up, transform.up) < 0)
+        if (CarGrappling)
         {
-            currentSteerAngle = -currentSteerAngle;
+            for (int i = 0; i < wheelColliders.Length; i++)
+            {
+                wheelColliders[i].steerAngle = 0;
+            }
         }
-        // front wheels
-        wheelColliders[0].steerAngle = currentSteerAngle;
-        wheelColliders[1].steerAngle = currentSteerAngle;
+        else
+        {
+            currentSteerAngle = horizontalInput;
+            if (Speed < 0 || Vector3.Dot(Vector3.up, transform.up) < 0)
+            {
+                currentSteerAngle = -currentSteerAngle;
+            }
+            // front wheels
+            wheelColliders[0].steerAngle = currentSteerAngle;
+            wheelColliders[1].steerAngle = currentSteerAngle;
 
-        // back wheels
-        wheelColliders[2].steerAngle = -currentSteerAngle;
-        wheelColliders[3].steerAngle = -currentSteerAngle;
+            // back wheels
+            wheelColliders[2].steerAngle = -currentSteerAngle;
+            wheelColliders[3].steerAngle = -currentSteerAngle;
+        }
     }
 
     void UpdateWheelVisuals()
