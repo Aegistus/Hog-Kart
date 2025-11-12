@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GrappleHook : MonoBehaviour
 {
-    [SerializeField] Transform leftGrapplePoint;
+    [SerializeField] Transform grappleHookBarrel;
+    [SerializeField] KeyCode inputKey;
+    [SerializeField] float torqueConstant = 10000;
 
     Vector3 grapplePoint;
     Rigidbody rb;
@@ -15,21 +17,21 @@ public class GrappleHook : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(inputKey))
         {
-            if (Physics.Raycast(leftGrapplePoint.position, leftGrapplePoint.forward, out RaycastHit rayHit, maxGrappleDistance))
+            if (Physics.Raycast(grappleHookBarrel.position, grappleHookBarrel.forward, out RaycastHit rayHit, maxGrappleDistance))
             {
                 grapplePoint = rayHit.point;
                 radius = Vector3.Distance(transform.position, grapplePoint) * radiusModifier;
                 grappling = true;
             }
         }
-        if (Input.GetKeyUp(KeyCode.A))
+        if (Input.GetKeyUp(inputKey))
         {
             grappling = false;
         }
@@ -43,10 +45,7 @@ public class GrappleHook : MonoBehaviour
             Vector3 pointOnCurve = transform.position - grapplePoint;
             Vector3 tangentVector = Vector3.Cross(pointOnCurve, Vector3.up).normalized;
             Vector3 newVelocity = Vector3.Project(originalVelocity, tangentVector);
-            //Vector3 newForward = (transform.position + rb.velocity).normalized;
-            //Quaternion lookRotation = Quaternion.LookRotation(newForward, Vector3.up);
-            //rb.MoveRotation(lookRotation);
-            rb.AddTorque(-10000f * newVelocity.magnitude * transform.up);
+            rb.AddTorque(torqueConstant * newVelocity.magnitude * transform.up);
             rb.velocity = newVelocity;
         }
     }

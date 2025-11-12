@@ -312,8 +312,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6128278333237392025}
+  - component: {fileID: 2326141617144100554}
   m_Layer: 0
-  m_Name: Left Grapple Point
+  m_Name: Left Grapple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,6 +335,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5969720106260085619}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &2326141617144100554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985501253160894978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50ee4e7f0628c043818b66258cc71b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grappleHookBarrel: {fileID: 6128278333237392025}
+  inputKey: 97
+  torqueConstant: -10000
 --- !u!1 &2044129348233524494
 GameObject:
   m_ObjectHideFlags: 0
@@ -5798,6 +5814,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4345519991804793429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4960625923137837896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7556965810131498157}
+  - component: {fileID: 4593178268209439207}
+  m_Layer: 0
+  m_Name: Right Grapple
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7556965810131498157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4960625923137837896}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710653, z: -0, w: 0.7071071}
+  m_LocalPosition: {x: 1.101, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5969720106260085619}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &4593178268209439207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4960625923137837896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50ee4e7f0628c043818b66258cc71b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grappleHookBarrel: {fileID: 7556965810131498157}
+  inputKey: 100
+  torqueConstant: 10000
 --- !u!1 &5751344733256390567
 GameObject:
   m_ObjectHideFlags: 0
@@ -20974,7 +21037,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5969720106260085619}
   - component: {fileID: 6924653245555492107}
-  - component: {fileID: 7508685753589670538}
   - component: {fileID: 8514867265618074812}
   - component: {fileID: 2990100723089090236}
   - component: {fileID: 4271077114250241773}
@@ -21005,6 +21067,7 @@ Transform:
   - {fileID: 1385900142670716246}
   - {fileID: 2417947765784062494}
   - {fileID: 6128278333237392025}
+  - {fileID: 7556965810131498157}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6924653245555492107
@@ -21046,19 +21109,6 @@ MonoBehaviour:
   - {fileID: 2270260048381158781}
   - {fileID: 3047250809128285614}
   boostAudio: {fileID: 9127220203590157499}
---- !u!114 &7508685753589670538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555290539661272622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d50ee4e7f0628c043818b66258cc71b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftGrapplePoint: {fileID: 6128278333237392025}
 --- !u!114 &8514867265618074812
 MonoBehaviour:
   m_ObjectHideFlags: 0
