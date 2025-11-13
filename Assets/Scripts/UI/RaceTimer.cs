@@ -30,7 +30,7 @@ public class RaceTimer : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(Initialize());
     }

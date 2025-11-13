@@ -9,8 +9,8 @@ public class GameUI : MonoBehaviour
         RaceManager manager = FindAnyObjectByType<RaceManager>();
         if (manager != null)
         {
-            manager.OnCountdownStart += () => ShowGameUI(true);
             ShowGameUI(false);
+            manager.OnCountdownStart += () => ShowGameUI(true);
         }
     }
 

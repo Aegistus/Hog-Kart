@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
             return;
         }
         transform.Rotate(rotationSpeed * Input.GetAxis("Mouse X") * Time.deltaTime * Vector3.up);
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
     }
 
     private void FixedUpdate()

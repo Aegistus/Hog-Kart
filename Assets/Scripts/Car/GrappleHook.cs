@@ -7,6 +7,7 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] Transform grappleHookBarrel;
     [SerializeField] KeyCode inputKey;
     [SerializeField] float torqueConstant = 10000;
+    [SerializeField] Transform[] sensorPoints;
 
     public bool Grappling => grappling;
 
@@ -28,11 +29,15 @@ public class GrappleHook : MonoBehaviour
     {
         if (Input.GetKeyDown(inputKey))
         {
-            if (Physics.Raycast(grappleHookBarrel.position, grappleHookBarrel.forward, out RaycastHit rayHit, maxGrappleDistance))
+            foreach (var sensor in sensorPoints)
             {
-                grapplePoint = rayHit.point;
-                radius = Vector3.Distance(transform.position, grapplePoint) * radiusModifier;
-                grappling = true;
+                if (Physics.Raycast(sensor.position, sensor.forward, out RaycastHit rayHit, maxGrappleDistance))
+                {
+                    grapplePoint = rayHit.point;
+                    radius = Vector3.Distance(transform.position, grapplePoint) * radiusModifier;
+                    grappling = true;
+                    break;
+                }
             }
         }
         if (Input.GetKeyUp(inputKey))
