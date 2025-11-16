@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
         }
         if (car.CarGrappling)
         {
-            transform.rotation = targetTransform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetTransform.rotation, smoothSpeed * Time.deltaTime);
             return;
         }
         transform.Rotate(rotationSpeed * Input.GetAxis("Mouse X") * Time.deltaTime * Vector3.up);

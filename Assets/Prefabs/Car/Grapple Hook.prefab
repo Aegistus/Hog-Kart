@@ -320,9 +320,11 @@ MonoBehaviour:
   inputKey: 97
   torqueConstant: -10000
   quality: 500
+  damper: 14
+  strength: 800
+  velocity: 15
   waveCount: 4
-  waveHeight: 1
-  ropeSpeed: 15
+  waveHeight: 4
   effectCurve:
     serializedVersion: 2
     m_Curve:
