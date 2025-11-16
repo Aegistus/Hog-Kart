@@ -296,8 +296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappleHookBarrel: {fileID: 8873226760143490598}
-  inputKey: 97
-  torqueConstant: -10000
   sensorPoints:
   - {fileID: 3021107037459655645}
   - {fileID: 4465930969160782127}
@@ -319,6 +317,36 @@ MonoBehaviour:
   - {fileID: 7170221962675605235}
   - {fileID: 3699514307175812198}
   - {fileID: 1139200874355109643}
+  inputKey: 97
+  torqueConstant: -10000
+  quality: 500
+  waveCount: 4
+  waveHeight: 1
+  ropeSpeed: 15
+  effectCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.8428877
+      outSlope: 0.8428877
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.044067796
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!120 &5899339009032854041
 LineRenderer:
   serializedVersion: 2
