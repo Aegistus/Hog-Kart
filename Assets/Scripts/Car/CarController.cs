@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using System;
 using System.Linq;
 
@@ -44,6 +45,7 @@ public class CarController : MonoBehaviour
     bool isPowersliding;
     bool isBraking;
     float defaultWheelForwardStiffness;
+    ChromaticAberration chromaticAberration;
 
     public float Speed
     {
@@ -232,7 +234,27 @@ public class CarController : MonoBehaviour
         {
             boostExhaustParticles[i].Play();
         }
+            var ppVolume = cameraHolder.GetComponentInChildren<PostProcessVolume>();
+            chromaticAberration = ppVolume.profile.GetSetting<ChromaticAberration>();
+        chromaticAberration.intensity.value = 1f;
+        StartCoroutine(ResetChromaticAberration());
         CurrentBoostCooldown = boostCooldown;
+    }
+
+
+    float timeElapsed;
+    float lerpDuration = 3;
+    public IEnumerator ResetChromaticAberration()
+    {
+        timeElapsed = 0;
+        while (timeElapsed < lerpDuration)
+        {
+            chromaticAberration.intensity.value = Mathf.Lerp(1, 0, timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        chromaticAberration.intensity.value = 0;
     }
 
     public void ResetToLastCheckpoint()
