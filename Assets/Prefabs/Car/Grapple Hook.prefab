@@ -323,8 +323,8 @@ MonoBehaviour:
   damper: 14
   strength: 800
   velocity: 15
-  waveCount: 4
-  waveHeight: 4
+  waveCount: 6
+  waveHeight: 6
   effectCurve:
     serializedVersion: 2
     m_Curve:
