@@ -47,6 +47,7 @@ public class GrappleHook : MonoBehaviour
                     grapplePoint = rayHit.point;
                     currentRopePoint = grappleHookBarrel.position;
                     radius = Vector3.Distance(transform.position, grapplePoint) * radiusModifier;
+                    SoundManager.Instance.PlaySoundAtPosition("GrappleHookShoot", transform.position);
                     grappling = true;
                     break;
                 }
