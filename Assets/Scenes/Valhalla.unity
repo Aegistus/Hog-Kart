@@ -13762,12 +13762,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 174599290635557754, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: ropeSpeed
-      value: 1
+      propertyPath: torqueConstant
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 2326141617144100554, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
-      propertyPath: ropeSpeed
-      value: 1
+      propertyPath: torqueConstant
+      value: -5000
       objectReference: {fileID: 0}
     - target: {fileID: 5969720106260085619, guid: ab03ea44abb8be0489c0c1670cdb807d, type: 3}
       propertyPath: m_LocalPosition.x

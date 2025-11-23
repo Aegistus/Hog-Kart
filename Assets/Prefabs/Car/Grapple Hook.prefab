@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappleHookBarrel: {fileID: 8873226760143490598}
+  grappleHookTip: {fileID: 6608875754579076078}
   sensorPoints:
   - {fileID: 3021107037459655645}
   - {fileID: 4465930969160782127}
@@ -634,7 +635,7 @@ Transform:
   m_GameObject: {fileID: 6140401676479512251}
   serializedVersion: 2
   m_LocalRotation: {x: -0.13052645, y: 0.000000029802315, z: -0.00000006705521, w: 0.9914448}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: -0.417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -892,7 +893,7 @@ Transform:
   m_GameObject: {fileID: 8750118239640993377}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: -0.417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -930,7 +931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30583f16b5b6c1e4e88f0da008a48c54, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30583f16b5b6c1e4e88f0da008a48c54, type: 3}
       propertyPath: m_LocalPosition.y
@@ -938,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30583f16b5b6c1e4e88f0da008a48c54, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30583f16b5b6c1e4e88f0da008a48c54, type: 3}
       propertyPath: m_LocalRotation.w
@@ -984,5 +985,10 @@ PrefabInstance:
 --- !u!4 &3293455649347131302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 30583f16b5b6c1e4e88f0da008a48c54, type: 3}
+  m_PrefabInstance: {fileID: 3043884742541553741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6608875754579076078 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1042165017945107549, guid: 30583f16b5b6c1e4e88f0da008a48c54, type: 3}
   m_PrefabInstance: {fileID: 3043884742541553741}
   m_PrefabAsset: {fileID: 0}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GrappleHook : MonoBehaviour
 {
     [SerializeField] Transform grappleHookBarrel;
+    [SerializeField] Transform grappleHookTip;
     [SerializeField] Transform[] sensorPoints;
     [SerializeField] KeyCode inputKey;
     [SerializeField] float torqueConstant = 10000;
@@ -20,6 +21,7 @@ public class GrappleHook : MonoBehaviour
 
     Vector3 grapplePoint;
     Vector3 currentRopePoint;
+    Vector3 hookTipStartPosition;
     Rigidbody rb;
     LineRenderer lineRend;
     Spring spring;
@@ -34,6 +36,7 @@ public class GrappleHook : MonoBehaviour
         lineRend = GetComponent<LineRenderer>();
         spring = new Spring();
         spring.SetTarget(0);
+        hookTipStartPosition = grappleHookTip.localPosition;
     }
 
     private void Update()
@@ -88,6 +91,7 @@ public class GrappleHook : MonoBehaviour
             {
                 lineRend.positionCount = 0;
             }
+            grappleHookTip.localPosition = hookTipStartPosition;
         }
         else
         {
@@ -110,6 +114,7 @@ public class GrappleHook : MonoBehaviour
                 var offset = effectCurve.Evaluate(delta) * Mathf.Sin(delta * waveCount * Mathf.PI * spring.Value) * waveHeight * upVector;
                 lineRend.SetPosition(i, Vector3.Lerp(grappleHookBarrel.position, currentRopePoint, delta) + offset);
             }
+            grappleHookTip.position = lineRend.GetPosition(lineRend.positionCount - 1);
         }
 
     }
