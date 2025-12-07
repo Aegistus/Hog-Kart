@@ -68,12 +68,12 @@ public class GrappleHook : MonoBehaviour
     {
         if (grappling && Vector3.Distance(transform.position, grapplePoint) > radius)
         {
-            Vector3 originalVelocity = rb.velocity;
+            Vector3 originalVelocity = rb.linearVelocity;
             Vector3 pointOnCurve = transform.position - grapplePoint;
             Vector3 tangentVector = Vector3.Cross(pointOnCurve, Vector3.up).normalized;
             Vector3 newVelocity = Vector3.Project(originalVelocity, tangentVector);
             rb.AddTorque(torqueConstant * newVelocity.magnitude * transform.up);
-            rb.velocity = newVelocity;
+            rb.linearVelocity = newVelocity;
         }
     }
 

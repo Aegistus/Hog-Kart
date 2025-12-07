@@ -51,7 +51,7 @@ public class CarController : MonoBehaviour
     {
         get
         {
-            var speed = transform.InverseTransformDirection(rb.velocity).z;
+            var speed = transform.InverseTransformDirection(rb.linearVelocity).z;
             if (speed < .5 && speed > -.5)
             {
                 speed = 0;
@@ -259,7 +259,7 @@ public class CarController : MonoBehaviour
 
     public void ResetToLastCheckpoint()
     {
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         OnReset.Invoke();
     }
 
