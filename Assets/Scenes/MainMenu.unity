@@ -210,7 +210,7 @@ RectTransform:
   m_GameObject: {fileID: 45785994}
   m_LocalRotation: {x: -0.000000010536721, y: -0.000000010536706, z: -0.70710737, w: -0.70710623}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 822082787}
@@ -272,7 +272,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45785994}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -8172,7 +8172,7 @@ RectTransform:
   m_GameObject: {fileID: 823437815}
   m_LocalRotation: {x: 0.00000001053671, y: -0.000000010536714, z: 0.70710665, w: -0.70710695}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1162068663}
@@ -8190,7 +8190,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823437815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -14577,7 +14577,7 @@ RectTransform:
   m_GameObject: {fileID: 1234341513}
   m_LocalRotation: {x: -0.000000010536721, y: -0.000000010536706, z: -0.70710737, w: -0.70710623}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1162068663}
@@ -14639,7 +14639,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234341513}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -21479,6 +21479,7 @@ GameObject:
   - component: {fileID: 1718206593}
   - component: {fileID: 1718206592}
   - component: {fileID: 1718206591}
+  - component: {fileID: 1718206595}
   m_Layer: 5
   m_Name: Quit Game
   m_TagString: Untagged
@@ -21570,7 +21571,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1718206593}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1718206595}
+        m_TargetAssemblyTypeName: UltEventConverter, Assembly-CSharp
+        m_MethodName: CallEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1718206593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21609,6 +21622,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718206589}
   m_CullTransparentMesh: 1
+--- !u!114 &1718206595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718206589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc77af014018f6e44b5f29d07869f6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UltEventConverter
+  ultEvent:
+    _PersistentCalls:
+    - _Target: {fileID: 0}
+      _MemberName: UnityEngine.Application, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null.Quit
+      _PersistentArguments: []
 --- !u!1 &1757686635
 GameObject:
   m_ObjectHideFlags: 0
@@ -21638,7 +21669,7 @@ RectTransform:
   m_GameObject: {fileID: 1757686635}
   m_LocalRotation: {x: 0.00000001053671, y: -0.000000010536714, z: 0.70710665, w: -0.70710695}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 822082787}
@@ -21700,7 +21731,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757686635}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
