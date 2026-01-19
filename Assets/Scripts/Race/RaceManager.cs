@@ -11,6 +11,7 @@ public class RaceManager : MonoBehaviour
 
     [SerializeField] string mapName;
     [SerializeField] float startRaceDelay = 5f;
+    [SerializeField] bool freezeOnStart = true;
 
     public static RaceManager Instance { get; private set; }
     public static readonly string[] allMapNames = { "TestScene", "Valhalla", };
@@ -19,6 +20,7 @@ public class RaceManager : MonoBehaviour
     public Checkpoint CurrentRespawnCheckpoint { get; private set; }
     public Checkpoint NextCheckpoint => CurrentRespawnCheckpoint.Next;
     public int CheckpointCount => allCheckpoints.Count;
+
 
     List<Checkpoint> allCheckpoints = new();
     CarController car;
@@ -55,8 +57,8 @@ public class RaceManager : MonoBehaviour
         // mark the starting line as having been reached.
         allCheckpoints[0].MarkAsReached();
 
-        car.SetCarFrozen(true);
-        car.SetInputDisabled(true);
+        car.SetCarFrozen(freezeOnStart);
+        car.SetInputDisabled(freezeOnStart);
     }
 
     private void Update()
