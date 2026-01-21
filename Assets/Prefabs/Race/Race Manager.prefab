@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6099354803137257196}
   - component: {fileID: 7715528572495194315}
+  - component: {fileID: 9218203664256184812}
   m_Layer: 0
   m_Name: Race Manager
   m_TagString: Untagged
@@ -46,6 +47,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: 
+  startRaceDelay: 5
+  freezeOnStart: 1
+--- !u!114 &9218203664256184812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842704239701524261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 03b358e0a0ab9ea45bdb097220b5ead0, type: 2}
+    - {fileID: 0}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7715528572495194315}
+          m_TargetAssemblyTypeName: RaceManager, Assembly-CSharp
+          m_MethodName: StartCountdown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1305619148332362770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 8145417403815651895, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
       propertyPath: m_Name
       value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234976472479506232, guid: c5e75c97d6cc0c241a1a3a19c4a4546b, type: 3}
+      propertyPath: m_VersionIndex
+      value: 1931
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

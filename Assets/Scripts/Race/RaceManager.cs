@@ -90,8 +90,8 @@ public class RaceManager : MonoBehaviour
 
     public void ResetPlayer()
     {
-        var player = FindObjectOfType<CarController>();
-        var camera = FindObjectOfType<CameraController>();
+        var player = FindAnyObjectByType<CarController>();
+        var camera = FindAnyObjectByType<CameraController>();
 
         player.ResetToLastCheckpoint();
         player.transform.SetPositionAndRotation(CurrentRespawnCheckpoint.transform.position + Vector3.up * 3, CurrentRespawnCheckpoint.transform.rotation);
