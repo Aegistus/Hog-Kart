@@ -260,6 +260,7 @@ public class CarController : MonoBehaviour
     public void ResetToLastCheckpoint()
     {
         rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         OnReset.Invoke();
     }
 
